@@ -3,23 +3,23 @@ CC = g++                          # Compilador a ser usado
 CFLAGS = -Wall                    # Flags de compilação
 
 # Nome do executável
-TARGET = dijkstra.bin
+TARGET = floyd-warshall.bin
 
 # Nome do arquivo fonte
-SOURCE = Dijkstra.cpp
+SOURCE = Floyd-Warshall.cpp
 
 # Regra padrão
 all: $(TARGET)
-	mv $(TARGET) ../Bat1
-	chmod +x ../Bat1/Bat1.sh
-	cd ../Bat1 && ./Bat1.sh
+	mv $(TARGET) ../BatMANN
+	chmod +x ../BatMANN/BatMANN.sh
+	cd ../BatMANN && ./BatMANN.sh
 	
 # Como criar o executável diretamente a partir do código-fonte
-$(TARGET): Dijkstra.cpp
+$(TARGET): Floyd-Warshall.cpp
 	$(CC) $(CFLAGS) $(SOURCE) -o $(TARGET)
 
 run: $(TARGET)
-	./$(TARGET)
+	./$(TARGET) -f entrada.txt -s
 	
 # Regra para limpar arquivos gerados
 clear:

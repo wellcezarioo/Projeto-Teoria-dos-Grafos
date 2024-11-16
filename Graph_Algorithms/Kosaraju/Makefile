@@ -3,10 +3,10 @@ CC = g++                          # Compilador a ser usado
 CFLAGS = -Wall                    # Flags de compilação
 
 # Nome do executável
-TARGET = dijkstra.bin
+TARGET = kosaraju.bin
 
 # Nome do arquivo fonte
-SOURCE = Dijkstra.cpp
+SOURCE = Kosaraju.cpp
 
 # Regra padrão
 all: $(TARGET)
@@ -15,12 +15,11 @@ all: $(TARGET)
 	cd ../Bat1 && ./Bat1.sh
 	
 # Como criar o executável diretamente a partir do código-fonte
-$(TARGET): Dijkstra.cpp
+$(TARGET): Kosaraju.cpp
 	$(CC) $(CFLAGS) $(SOURCE) -o $(TARGET)
 
 run: $(TARGET)
-	./$(TARGET)
-	
+	./kosaraju.bin -f entrada.txt
 # Regra para limpar arquivos gerados
 clear:
 	rm -f $(TARGET)
