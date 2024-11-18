@@ -19,8 +19,7 @@ $(TARGET): Dijkstra.cpp
 	$(CC) $(CFLAGS) $(SOURCE) -o $(TARGET)
 
 run: $(TARGET)
-	./$(TARGET)
-	
-# Regra para limpar arquivos gerados
-clear:
-	rm -f $(TARGET)
+	./$(TARGET) -f entrada.tx -o saida.txt
+
+move: $(TARGET)
+	mv $(TARGET) ../Bat1

@@ -131,6 +131,10 @@ int main(int argc, char* argv[]) {
 
     kosaraju(g);
 
+    // redireciona o buffer de saida
+    // evita a mensagem de segmentation fault (core dumped) no final
+    cout.rdbuf(nullptr);
+
     if (arquivo_saida.is_open()) {
         arquivo_saida.close();
     }

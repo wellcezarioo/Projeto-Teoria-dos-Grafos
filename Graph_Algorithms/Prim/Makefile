@@ -20,7 +20,6 @@ $(TARGET): Prim.cpp
 
 run: $(TARGET)
 	./$(TARGET) -f entrada.txt -o saida.txt -i 1 -s
-	
-# Regra para limpar arquivos gerados
-clear:
-	rm -f $(TARGET)
+
+move: $(TARGET)
+	mv $(TARGET) ../Bat1

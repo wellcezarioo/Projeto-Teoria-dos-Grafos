@@ -19,7 +19,7 @@ $(TARGET): Kosaraju.cpp
 	$(CC) $(CFLAGS) $(SOURCE) -o $(TARGET)
 
 run: $(TARGET)
-	./kosaraju.bin -f entrada.txt
-# Regra para limpar arquivos gerados
-clear:
-	rm -f $(TARGET)
+	./kosaraju.bin -f entrada.txt -o saida.txt
+
+move: $(TARGET)
+	mv $(TARGET) ../Bat1

@@ -20,7 +20,6 @@ $(TARGET): $(SOURCE)
 
 run: $(TARGET)
 	./$(TARGET) -f entrada.txt -o saida.txt -s
-	
-# Regra para limpar arquivos gerados
-clear:
-	rm -f $(TARGET)
+
+move: $(TARGET)
+	mv $(TARGET) ../Bat1

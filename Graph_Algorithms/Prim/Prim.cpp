@@ -38,6 +38,7 @@ class Grafo {
 
 
 void Prim(Grafo &g, Grafo &agm, int inicial) {
+    
     // Priority queue para armazenar arestas com base no menor peso
     // Armazena pares na forma: {peso, {origem, destino}}
     priority_queue<pair<int, aresta>, vector<pair<int, aresta>>, greater<pair<int, aresta>>> pq;
