@@ -10,11 +10,11 @@ SOURCE = Floyd-Warshall.cpp
 
 # Regra padrão
 all: $(TARGET)
-	mv $(TARGET) ../BatMANN
-	chmod +x ../BatMANN/BatMANN.sh
-	cd ../BatMANN && ./BatMANN.sh
+	mv $(TARGET) ../../BatMANN
+	chmod +x ../../BatMANN/BatMANN.sh
+	cd ../../BatMANN && ./BatMANN.sh
 	
-# Como criar o executável diretamente a partir do código-fonte
+# regra para criar o executável diretamente a partir do código-fonte
 $(TARGET): Floyd-Warshall.cpp
 	$(CC) $(CFLAGS) $(SOURCE) -o $(TARGET)
 
@@ -22,4 +22,4 @@ run: $(TARGET)
 	./$(TARGET) -f entrada.txt -s -o saida.txt
 
 move: $(TARGET)
-	mv $(TARGET) ../BatMANN
+	mv $(TARGET) ../../BatMANN

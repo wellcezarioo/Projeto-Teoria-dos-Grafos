@@ -10,11 +10,11 @@ SOURCE = Dijkstra.cpp
 
 # Regra padrão
 all: $(TARGET)
-	mv $(TARGET) ../Bat1
-	chmod +x ../Bat1/Bat1.sh
-	cd ../Bat1 && ./Bat1.sh
+	mv $(TARGET) ../../Bat1
+	chmod +x ../../Bat1/Bat1.sh
+	cd ../../Bat1 && ./Bat1.sh
 	
-# Como criar o executável diretamente a partir do código-fonte
+# regra para criar o executável diretamente a partir do código-fonte
 $(TARGET): Dijkstra.cpp
 	$(CC) $(CFLAGS) $(SOURCE) -o $(TARGET)
 
@@ -22,4 +22,4 @@ run: $(TARGET)
 	./$(TARGET) -f entrada.tx -o saida.txt
 
 move: $(TARGET)
-	mv $(TARGET) ../Bat1
+	mv $(TARGET) ../../Bat1
