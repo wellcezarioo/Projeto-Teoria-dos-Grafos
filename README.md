@@ -50,5 +50,5 @@ This command will compile the algorithm and move it to the test folder, "__Bat1_
 
 ## Alunos
 
-- Davi Viera Lourenço Correia ✉️(<dvlc@ic.ufal.br>)
+- Davi Vieira Lourenço Correia ✉️(<dvlc@ic.ufal.br>)
 - Wellington Cezario dos Santos ✉️(<wcs@ic.ufal.br>)
