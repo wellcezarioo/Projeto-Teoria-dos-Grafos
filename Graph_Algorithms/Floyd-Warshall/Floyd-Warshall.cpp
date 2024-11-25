@@ -4,7 +4,17 @@
 #include <cstring>
 #include <climits>
 
+
 using namespace std;
+//detecção de ciclo negativo adicionada!
+bool detect_negative_cycle(int vertices, vector<vector<int>> &dist) {
+    for (int i = 0; i < vertices; i++) {
+        if (dist[i][i] < 0) {
+            return true; 
+        }
+    }
+    return false;
+}
 
 void floyd_warshall(int vertices, vector<vector<int>> &dist) {
     for (int k = 0; k < vertices; k++) {
@@ -78,7 +88,15 @@ int main(int argc, char *argv[]) {
     arquivo_entrada.close();
 
     floyd_warshall(vertices, dist);
-
+    
+    if (detect_negative_cycle(vertices, dist)) {
+        cerr << "Erro: Ciclo negativo detectado no grafo." << endl;
+        if (arquivo_saida.is_open()) {
+            arquivo_saida.close();
+        }
+        return 1;
+    }
+    
     if (solucao) {
         for (int i = 0; i < vertices; i++) {
             for (int j = 0; j < vertices; j++) {
