@@ -4,9 +4,9 @@
 #include <cstring>
 #include <climits>
 
-
 using namespace std;
-//detecção de ciclo negativo adicionada!
+
+//detecção de ciclo negativo
 bool detect_negative_cycle(int vertices, vector<vector<int>> &dist) {
     for (int i = 0; i < vertices; i++) {
         if (dist[i][i] < 0) {
@@ -21,6 +21,7 @@ void floyd_warshall(int vertices, vector<vector<int>> &dist) {
         for (int i = 0; i < vertices; i++) {
             for (int j = 0; j < vertices; j++) {
                 if ((dist[i][j] > dist[i][k] + dist[k][j]) && (dist[k][j] != INT_MAX && dist[i][k] != INT_MAX)) {
+                    if(dist[i][k] + dist[k][j] < 0) continue;
                     dist[i][j] = dist[i][k] + dist[k][j];
                 }
             }
@@ -31,14 +32,12 @@ void floyd_warshall(int vertices, vector<vector<int>> &dist) {
 void help() {
     cout << "-h : mostra o help\n" 
          << "-o <arquivo> : redireciona a saida para o 'arquivo'\n"
-         << "-f <arquivo> : indica o 'arquivo' que contem o grafo de entrada\n"
-         << "-s : mostra a matriz de caminhos minimos" << endl;
+         << "-f <arquivo> : indica o 'arquivo' que contem o grafo de entrada\n";
 }
 
 int main(int argc, char *argv[]) {
     string entrada_nome = "";
     string saida_nome = "";
-    bool solucao = false;
     ofstream arquivo_saida;
 
     int vertices, arestas;
@@ -51,13 +50,8 @@ int main(int argc, char *argv[]) {
                 cerr << "Erro ao abrir o arquivo de saida: " << saida_nome << endl;
                 return 1;
             }
-
-            // Redireciona cout para o arquivo
-            cout.rdbuf(arquivo_saida.rdbuf());
         } else if (strcmp(argv[i], "-f") == 0) {
             entrada_nome = argv[++i];
-        } else if (strcmp(argv[i], "-s") == 0) {
-            solucao = true;
         } else if (strcmp(argv[i], "-h") == 0) {
             help();
             return 0;
@@ -88,7 +82,6 @@ int main(int argc, char *argv[]) {
     arquivo_entrada.close();
 
     floyd_warshall(vertices, dist);
-    
     if (detect_negative_cycle(vertices, dist)) {
         cerr << "Erro: Ciclo negativo detectado no grafo." << endl;
         if (arquivo_saida.is_open()) {
@@ -96,8 +89,8 @@ int main(int argc, char *argv[]) {
         }
         return 1;
     }
-    
-    if (solucao) {
+
+    if (!arquivo_saida.is_open()) {
         for (int i = 0; i < vertices; i++) {
             for (int j = 0; j < vertices; j++) {
                 if (dist[i][j] == INT_MAX) {
@@ -108,10 +101,23 @@ int main(int argc, char *argv[]) {
             }
             cout << endl;
         }
+    } else {
+        for (int i = 0; i < vertices; i++) {
+            for (int j = 0; j < vertices; j++) {
+                if (dist[i][j] == INT_MAX) {
+                    arquivo_saida << "- ";
+                } else {
+                    arquivo_saida << dist[i][j] << " ";
+                }
+            }
+            arquivo_saida << endl;
+        }
     }
+
 
     if (arquivo_saida.is_open()) {
         arquivo_saida.close();
     }
+    
     return 0;
 }

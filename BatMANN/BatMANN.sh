@@ -7,7 +7,7 @@ do
     echo -e "\e[33mInstância $arquivo_teste\e[0m"
 
     # Gera a saída do algoritmo e redireciona para um arquivo temporário
-    ./floyd-warshall.bin -s -f $arquivo_teste > temp
+    ./floyd-warshall.bin -f $arquivo_teste > temp
 
     # Extrai o nome base do arquivo para encontrar o gabarito correspondente
     arquivo_gabarito=./Gabarito/gabarito_$(basename $arquivo_teste)
