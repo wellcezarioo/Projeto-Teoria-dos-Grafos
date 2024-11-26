@@ -10,7 +10,6 @@ SOURCE = Floyd-Warshall.cpp
 
 # Regra padrão
 all: $(TARGET)
-	./$(TARGET) -f entrada.txt
 
 # regra para criar o executável diretamente a partir do código-fonte
 $(TARGET): Floyd-Warshall.cpp
@@ -20,4 +19,4 @@ run: $(TARGET)
 	./$(TARGET) -f entrada.txt -o saida.txt
 
 move: $(TARGET)
-	mv $(TARGET) ../../BatMANN
+	mv $(TARGET) casos_teste
