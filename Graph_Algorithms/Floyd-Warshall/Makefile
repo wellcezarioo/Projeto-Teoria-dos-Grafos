@@ -16,7 +16,6 @@ $(TARGET): Floyd-Warshall.cpp
 	$(CC) $(CFLAGS) $(SOURCE) -o $(TARGET)
 
 run: $(TARGET)
-	./$(TARGET) -f entrada.txt -o saida.txt
 
 move: $(TARGET)
 	mv $(TARGET) casos_teste
